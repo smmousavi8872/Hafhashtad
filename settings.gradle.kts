@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Hafhashtad"
 include(":app")
- 
+include(":convention")
+include(":core")
+include(":features")
+include(":sync")
