@@ -8,5 +8,4 @@ import retrofit2.http.GET
 interface StoreApiService {
     @GET(value = "products")
     suspend fun getAllProducts(): ServerResponse<List<Product>>
-
 }

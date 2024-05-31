@@ -78,7 +78,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:data"))
+    implementation(project(":core:data-source"))
     implementation(project(":core:database"))
     implementation(project(":core:model"))
     implementation(project(":core:model"))
