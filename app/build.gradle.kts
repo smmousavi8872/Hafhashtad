@@ -1,5 +1,4 @@
 
-
 plugins {
     id("kotlin-kapt")
     alias(libs.plugins.hilt)
@@ -30,12 +29,21 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+        }
+        release {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        create("benchmark") {
+            initWith(buildTypes.getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
         }
     }
 
@@ -53,7 +61,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.5"
     }
 
     packaging {
@@ -70,6 +78,18 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:data"))
+    implementation(project(":core:database"))
+    implementation(project(":core:model"))
+    implementation(project(":core:model"))
+    implementation(project(":core:network"))
+    implementation(project(":core:repository"))
+    implementation(project(":core:ui"))
+
+    implementation(project(":feature:bookmarked"))
+    implementation(project(":feature:store"))
+
+    implementation(project(":sync:work"))
 
     // AndroidX
     implementation(libs.androidx.core.ktx)
@@ -152,4 +172,5 @@ dependencies {
     implementation(libs.truth)
     testImplementation(libs.turbine)
     implementation(libs.google.oss.licenses)
+    implementation(libs.kotlin.stdlib)
 }

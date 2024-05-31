@@ -1,6 +1,6 @@
 [versions]
 agp = "8.4.1"
-kotlin = "1.9.0"
+kotlin = "1.9.20"
 coreKtx = "1.13.1"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -8,6 +8,7 @@ lifecycleRuntimeKtx = "2.6.2"
 composeBom = "2024.05.00"
 accompanist = "0.34.0"
 androidGradlePlugin = "8.4.0"
+androidTools = "31.4.0"
 androidxAppCompat = "1.7.0"
 androidxActivity = "1.8.2"
 androidxBrowser = "1.8.0"
@@ -132,6 +133,13 @@ room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+
+# Dependencies of the conventions module
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -149,4 +157,7 @@ protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 room = { id = "androidx.room", version.ref = "room" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }
+# custom plugins
+hafashtad-android-hilt = { id = "hafashtad.android.hilt", version = "unspecified" }
+hafashtad-room-plugin = { id = "hafashtad.android.room", version = "unspecified" }
 

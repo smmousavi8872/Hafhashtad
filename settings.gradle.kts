@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+//        includeBuild("convention")
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -20,8 +21,16 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Hafhashtad"
-include(":app")
 include(":convention")
-include(":core")
-include(":features")
-include(":sync")
+include(":app")
+include(":benchmark")
+include(":core:database")
+include(":core:model")
+include(":core:network")
+include(":feature:store")
+include(":feature:bookmarked")
+include(":core:ui")
+include(":core:test-doubles")
+include(":core:data")
+include(":core:repository")
+include(":sync:work")
