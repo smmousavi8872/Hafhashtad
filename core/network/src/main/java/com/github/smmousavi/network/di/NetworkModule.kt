@@ -28,7 +28,7 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpFactory(): Call.Factory = trace("Trace:OkHttpClient") {
+    fun provideOkHttpFactory(): Call.Factory = trace("HttpTrace:OkHttpClient") {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor())
             .build()
@@ -40,7 +40,7 @@ internal object NetworkModule {
         // request dagger.Lazy here, so that it's not instantiated from Dagger.
         okHttpCallFactory: dagger.Lazy<Call.Factory>,
         @ApplicationContext application: Context,
-    ): ImageLoader = trace("Trace:ImageLoader") {
+    ): ImageLoader = trace("HttpTrace:ImageLoader") {
         ImageLoader.Builder(application)
             .callFactory { okHttpCallFactory.get() }
             .components { add(SvgDecoder.Factory()) }
