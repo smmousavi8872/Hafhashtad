@@ -14,7 +14,6 @@ class RoomConventionPlugin : Plugin<Project> {
             pluginManager.apply("kotlin-kapt")
             pluginManager.apply("androidx.room")
 
-
             extensions.configure<RoomExtension> {
                 schemaDirectory("$projectDir/schemas")
             }
