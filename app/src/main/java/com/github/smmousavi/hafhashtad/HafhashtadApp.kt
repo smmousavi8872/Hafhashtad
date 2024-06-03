@@ -13,4 +13,8 @@ class HafhashtadApp : Application(), ImageLoaderFactory {
     lateinit var imageLoader: dagger.Lazy<ImageLoader>
 
     override fun newImageLoader(): ImageLoader = imageLoader.get()
+
+    override fun onCreate() {
+        super.onCreate()
+    }
 }

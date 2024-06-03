@@ -1,6 +1,7 @@
-package com.github.smmousavi.network.apiservices
+package com.github.smmousavi.network.di
 
 import androidx.tracing.trace
+import com.github.smmousavi.network.apiservices.StoreApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
