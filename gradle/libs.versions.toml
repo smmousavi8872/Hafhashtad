@@ -5,6 +5,7 @@ coreKtx = "1.13.1"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.2"
+androidxLifecycle = "2.7.0"
 composeBom = "2024.05.00"
 accompanist = "0.34.0"
 androidGradlePlugin = "8.4.0"
@@ -41,11 +42,8 @@ hiltExt = "1.2.0"
 junit4 = "4.13.2"
 kotlinxCoroutines = "1.8.0"
 kotlinxDatetime = "0.5.0"
-kotlinxSerializationJson = "1.6.3"
 moduleGraph = "2.5.0"
 okhttp = "4.12.0"
-protobuf = "4.26.0"
-protobufPlugin = "0.9.4"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 robolectric = "4.12.1"
@@ -93,6 +91,7 @@ androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscree
 androidx-dataStore-core = { group = "androidx.datastore", name = "datastore", version.ref = "androidxDataStore" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-metrics = { group = "androidx.metrics", name = "metrics-performance", version.ref = "androidxMetrics" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "androidxNavigation" }
@@ -133,6 +132,7 @@ turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
 
+
 # Dependencies of the conventions module
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
@@ -151,7 +151,6 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 module-graph = { id = "com.jraska.module.graph.assertion", version.ref = "moduleGraph" }
-protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }
 room = { id = "androidx.room", version.ref = "room" }
 secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }

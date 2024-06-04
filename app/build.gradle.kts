@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.protobuf)
 }
 
 android {
@@ -24,7 +23,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        multiDexEnabled = true
     }
 
     buildTypes {
@@ -84,14 +82,17 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:network"))
     implementation(project(":core:ui"))
+    implementation(project(":core:common"))
 
     implementation(project(":feature:store"))
+    implementation(project(":feature:search"))
 
     implementation(project(":sync:work"))
 
     // AndroidX
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
