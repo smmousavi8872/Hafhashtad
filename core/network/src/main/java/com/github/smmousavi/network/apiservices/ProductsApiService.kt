@@ -1,8 +1,6 @@
 package com.github.smmousavi.network.apiservices
 
-import com.github.smmousavi.network.response.Result
-import com.github.smmousavi.network.model.NetworkProduct
-import kotlinx.coroutines.flow.Flow
+import com.github.smmousavi.network.response.NetworkProduct
 import retrofit2.http.GET
 
 

@@ -2,11 +2,11 @@ package com.github.smmousavi.repository.product
 
 import com.github.smmousavi.asEntity
 import com.github.smmousavi.asExternalModel
+import com.github.smmousavi.common.result.Result
 import com.github.smmousavi.database.entity.ProductEntity
 import com.github.smmousavi.datasource.local.ProductLocalDataSource
 import com.github.smmousavi.datasource.remote.ProductRemoteDataSource
 import com.github.smmousavi.model.Product
-import com.github.smmousavi.network.response.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -17,12 +17,17 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
     private val productRemoteDataSource: ProductRemoteDataSource,
 ) : OfflineFirstProductRepository {
 
-    override suspend fun fetchAllProducts(): Flow<Result<List<ProductEntity>>> = flow {
+    override suspend fun fetchAllProducts(): Flow<Result<List<Product>>> = flow {
         emit(Result.Loading)
         try {
-            val products = productRemoteDataSource.requestAllProducts()
-            productLocalDataSource.upsertProducts(products.map { it.asEntity() })
-            emit(Result.Success(products.map { it.asEntity() }))
+            val networkProducts = productRemoteDataSource.requestAllProducts()
+            var productsEntity: List<ProductEntity>?
+            productLocalDataSource.upsertProducts(networkProducts.map { it.asEntity() }
+                .also { productsEntity = it })
+            productsEntity?.let { products ->
+                emit(Result.Success(products.map { it.asExternalModel() }))
+            }
+
         } catch (e: Exception) {
             emit(Result.Error(e))
         }

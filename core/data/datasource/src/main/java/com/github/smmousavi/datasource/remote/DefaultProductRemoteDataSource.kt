@@ -1,7 +1,7 @@
 package com.github.smmousavi.datasource.remote
 
 import com.github.smmousavi.network.apiservices.ProductsApiService
-import com.github.smmousavi.network.model.NetworkProduct
+import com.github.smmousavi.network.response.NetworkProduct
 import javax.inject.Inject
 
 class DefaultProductRemoteDataSource @Inject constructor(

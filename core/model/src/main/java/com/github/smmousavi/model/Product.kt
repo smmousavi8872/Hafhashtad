@@ -9,3 +9,8 @@ data class Product(
     val image: String,
     val rating: Rating,
 )
+
+data class Rating(
+    val rate: Double,
+    val count: Int,
+)

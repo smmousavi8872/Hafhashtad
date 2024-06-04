@@ -21,5 +21,7 @@ internal object DatabaseModule {
         context,
         HafashtadDatabase::class.java,
         "hafashtad-database",
-    ).build()
+    )
+        .fallbackToDestructiveMigration()
+        .build()
 }

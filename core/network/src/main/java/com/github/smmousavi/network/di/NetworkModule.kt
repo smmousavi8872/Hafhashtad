@@ -21,11 +21,17 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpFactory(): Call.Factory = trace("OkHttpClient") {
-        OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor())
-            .build()
-    }
+    fun provideOkHttpFactory(httpLoggingInterceptor: HttpLoggingInterceptor): Call.Factory =
+        trace("OkHttpClient") {
+            OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .build()
+        }
+
+    @Provides
+    @Singleton
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
     @Singleton

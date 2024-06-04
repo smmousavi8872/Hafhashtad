@@ -1,6 +1,6 @@
 package com.github.smmousavi.datasource.remote
 
-import com.github.smmousavi.network.model.NetworkProduct
+import com.github.smmousavi.network.response.NetworkProduct
 
 interface ProductRemoteDataSource {
 
