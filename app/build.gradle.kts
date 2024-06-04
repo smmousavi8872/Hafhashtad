@@ -159,11 +159,9 @@ dependencies {
     implementation(libs.coil.kt.svg)
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)
-    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.retrofit.gson)
     implementation(libs.javax.inject)
     api(libs.kotlinx.datetime)
-    implementation(libs.kotlinx.serialization.json)
-    api(libs.protobuf.kotlin.lite)
 
     // room
     implementation(libs.room.runtime)

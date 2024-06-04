@@ -47,7 +47,7 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.kotlin.serialization)
-    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit.gson)
 
     // Testing
     testImplementation(libs.robolectric)
