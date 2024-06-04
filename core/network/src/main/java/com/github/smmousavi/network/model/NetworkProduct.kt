@@ -1,4 +1,5 @@
-package com.github.smmousavi.model
+package com.github.smmousavi.network.model
+
 
 data class NetworkProduct(
     val id: Int,
@@ -9,3 +10,5 @@ data class NetworkProduct(
     val image: String,
     val rating: NetworkRating,
 )
+
+

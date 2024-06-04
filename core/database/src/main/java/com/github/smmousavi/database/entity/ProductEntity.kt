@@ -1,5 +1,6 @@
 package com.github.smmousavi.database.entity
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -12,5 +13,11 @@ data class ProductEntity(
     val description: String,
     val category: String,
     val image: String,
-    val ratingId: String,
+    @Embedded
+    val rating: RatingEntity,
+)
+
+data class RatingEntity(
+    val rate: Double,
+    val count: Int,
 )

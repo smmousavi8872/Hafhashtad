@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
 import com.github.smmousavi.database.entity.ProductEntity
-import com.github.smmousavi.database.entity.RatingEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
@@ -14,18 +14,11 @@ interface ProductDao {
     suspend fun upsertProducts(products: List<ProductEntity>)
 
     @Query("SELECT * FROM products")
-    suspend fun getAllProducts(): List<ProductEntity>
+    fun getAllProducts(): Flow<List<ProductEntity>>
 
     @Query("SELECT * FROM products WHERE id = :id")
-    suspend fun getProductById(id: Int): ProductEntity
+    fun getProductById(id: Int): Flow<ProductEntity>
 
     @Query(value = "DELETE FROM products WHERE id in (:ids)")
     suspend fun deleteProducts(ids: List<Int>)
-
-
-    @Upsert
-    suspend fun upsertRating(rating: RatingEntity)
-
-    @Query("SELECT * From ratings WHERE id = :id")
-    suspend fun getRatingById(id: Int): RatingEntity
 }

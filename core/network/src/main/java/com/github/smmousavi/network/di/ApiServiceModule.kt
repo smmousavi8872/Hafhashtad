@@ -1,7 +1,7 @@
 package com.github.smmousavi.network.di
 
 import androidx.tracing.trace
-import com.github.smmousavi.network.apiservices.StoreApiService
+import com.github.smmousavi.network.apiservices.ProductsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import retrofit2.Retrofit
 internal object ApiServiceModule {
 
     @Provides
-    fun provideStoreApiService(retrofit: Retrofit): StoreApiService {
-        return trace("Trace:ProductRetrofit") { retrofit.create(StoreApiService::class.java) }
+    fun provideProductsApiService(retrofit: Retrofit): ProductsApiService {
+        return trace("Trace:ProductRetrofit") { retrofit.create(ProductsApiService::class.java) }
     }
 }

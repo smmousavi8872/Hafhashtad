@@ -85,7 +85,6 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:ui"))
 
-    implementation(project(":feature:bookmarked"))
     implementation(project(":feature:store"))
 
     implementation(project(":sync:work"))

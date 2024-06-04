@@ -5,6 +5,7 @@ import androidx.tracing.trace
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.util.DebugLogger
+import com.github.smmousavi.network.apiservices.ProductsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +15,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
@@ -28,7 +30,7 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpFactory(): Call.Factory = trace("HttpTrace:OkHttpClient") {
+    fun provideOkHttpFactory(): Call.Factory = trace("OkHttpClient") {
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor())
             .build()
@@ -40,7 +42,7 @@ internal object NetworkModule {
         // request dagger.Lazy here, so that it's not instantiated from Dagger.
         okHttpCallFactory: dagger.Lazy<Call.Factory>,
         @ApplicationContext application: Context,
-    ): ImageLoader = trace("HttpTrace:ImageLoader") {
+    ): ImageLoader = trace("ImageLoader") {
         ImageLoader.Builder(application)
             .callFactory { okHttpCallFactory.get() }
             .components { add(SvgDecoder.Factory()) }

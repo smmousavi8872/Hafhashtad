@@ -1,4 +1,4 @@
-package com.github.smmousavi.network.retrofit
+package com.github.smmousavi.network.di
 
 import androidx.tracing.trace
 import com.github.smmousavi.network.PRODUCTS_BASE_URL

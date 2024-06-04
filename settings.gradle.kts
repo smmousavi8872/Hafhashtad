@@ -21,14 +21,11 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Hafhashtad"
-include(":convention")
 include(":app")
-include(":benchmark")
 include(":core:database")
 include(":core:model")
 include(":core:network")
 include(":feature:store")
-include(":feature:bookmarked")
 include(":core:ui")
 include(":core:test-doubles")
 include(":sync:work")
