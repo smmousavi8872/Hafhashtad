@@ -1,4 +1,3 @@
-
 plugins {
     id("kotlin-kapt")
     alias(libs.plugins.hilt)
@@ -21,11 +20,11 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -78,12 +77,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:data-source"))
+    implementation(project(":core:data:datasource"))
+    implementation(project(":core:data:repository"))
     implementation(project(":core:database"))
     implementation(project(":core:model"))
     implementation(project(":core:model"))
     implementation(project(":core:network"))
-    implementation(project(":core:repository"))
     implementation(project(":core:ui"))
 
     implementation(project(":feature:bookmarked"))
@@ -166,9 +165,12 @@ dependencies {
     api(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
     api(libs.protobuf.kotlin.lite)
+
+    // room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
+
     implementation(libs.truth)
     testImplementation(libs.turbine)
     implementation(libs.google.oss.licenses)

@@ -1,7 +1,7 @@
 package com.github.smmousavi.model
 
 data class Product(
-    val id: Long,
+    val id: Int,
     val title: String,
     val price: Double,
     val description: String,

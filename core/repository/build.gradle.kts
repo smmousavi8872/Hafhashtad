@@ -40,7 +40,7 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
-    implementation(project(":core:data-source"))
+    implementation(project(":core:datasource"))
 
     // Hilt
     implementation(libs.hilt.android)
