@@ -36,6 +36,7 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
         }
     }
 
+    // Offline first approach to conserve the Single Source of Truth principle
     override suspend fun getAllProducts(): Flow<Result<List<Product>>> = flow {
         try {
             fetchAllProducts().collect { result ->

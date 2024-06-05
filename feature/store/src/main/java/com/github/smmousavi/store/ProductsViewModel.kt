@@ -18,6 +18,9 @@ class ProductsViewModel @Inject constructor(
     private val _products = MutableStateFlow<Result<List<Product>>>(Result.Loading)
     val products: StateFlow<Result<List<Product>>> get() = _products
 
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> get() = _isRefreshing
+
     init {
         getAllProducts()
     }
@@ -26,6 +29,16 @@ class ProductsViewModel @Inject constructor(
         viewModelScope.launch {
             getProductsFromDatabaseUseCase.invoke().collect { result ->
                 _products.value = result
+            }
+        }
+    }
+
+    fun refreshProducts() {
+        _isRefreshing.value = true
+        viewModelScope.launch {
+            getProductsFromDatabaseUseCase().collect { result ->
+                _products.value = result
+                _isRefreshing.value = false
             }
         }
     }
