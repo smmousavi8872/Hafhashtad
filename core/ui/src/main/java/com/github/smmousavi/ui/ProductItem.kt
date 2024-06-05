@@ -43,14 +43,18 @@ fun ProductItem(product: Product) {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = product.title,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleSmall,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
-        Row {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top,
+        ) {
             Text(
                 text = "\$${product.price}",
-                style = MaterialTheme.typography.titleSmall
+                style = MaterialTheme.typography.bodyMedium
             )
             Row(
                 modifier = Modifier,
@@ -69,12 +73,9 @@ fun ProductItem(product: Product) {
                     modifier = Modifier.align(Alignment.CenterVertically),
                     text = "${product.rating.rate} (${product.rating.count})",
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Light
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
-
-
         }
     }
 }
