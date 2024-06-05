@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,23 +44,24 @@ import coil.compose.rememberImagePainter
 import com.github.smmousavi.common.result.Result
 import com.github.smmousavi.model.Product
 import com.github.smmousavi.model.Rating
+import com.github.smmousavi.ui.LoadingWheel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainProductsScreen(viewModel: ProductsViewModel = hiltViewModel()) {
+fun StoreScreen(viewModel: ProductsViewModel = hiltViewModel()) {
     val productsResult by viewModel.products.collectAsState()
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Product List") })
+            TopAppBar(title = { Text(stringResource(R.string.product_list)) })
         }
     ) {
         when (productsResult) {
             is Result.Loading -> {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator()
+                    LoadingWheel(contentDesc = stringResource(R.string.loading_products))
                 }
             }
 
@@ -71,7 +73,8 @@ fun MainProductsScreen(viewModel: ProductsViewModel = hiltViewModel()) {
             is Result.Error -> {
                 val message = (productsResult as Result.Error).exception.message
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(text = message ?: "An error occurred")
+                    Text(text = message ?: stringResource(R.string.an_error_occurred))
+
                 }
             }
         }
@@ -80,7 +83,7 @@ fun MainProductsScreen(viewModel: ProductsViewModel = hiltViewModel()) {
 
 @Preview(showBackground = true)
 @Composable
-fun MainProductScreenPreview() {
+fun StoreScreenPreview() {
     val sampleProducts = listOf(
         Product(
             id = 1,
@@ -235,7 +238,6 @@ fun ProductItem(product: Product) {
 
         }
     }
-
 }
 
 @Preview(showBackground = true)

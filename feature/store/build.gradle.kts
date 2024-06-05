@@ -1,12 +1,11 @@
 plugins {
     id("kotlin-kapt")
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.github.smmousavi.hafhashtad"
+    namespace = "com.github.smmousavi.store"
     compileSdk = 34
 
     buildFeatures {
@@ -22,9 +21,6 @@ android {
     }
 
     buildTypes {
-        debug {
-            isMinifyEnabled = false
-        }
         release {
             isMinifyEnabled = true
             proguardFiles(
@@ -56,12 +52,6 @@ android {
         kotlinCompilerExtensionVersion = "1.5.5"
     }
 
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
-
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
@@ -74,6 +64,7 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:domain"))
     implementation(project(":core:common"))
+    implementation(project(":core:ui"))
 
     // AndroidX
     implementation(libs.androidx.core.ktx)
@@ -99,6 +90,7 @@ dependencies {
     implementation(libs.androidx.window.core)
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
+    implementation(libs.compose.material)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -136,7 +128,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     api(libs.androidx.metrics)
     implementation(libs.androidx.browser)
-    implementation(libs.androidx.benchmark.macro)
     implementation(libs.androidx.test.core)
     implementation(libs.androidx.test.espresso.core)
     implementation(libs.androidx.test.ext)
@@ -144,21 +135,13 @@ dependencies {
     implementation(libs.androidx.test.runner)
     implementation(libs.androidx.test.uiautomator)
     implementation(libs.coil.kt.svg)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.gson)
     implementation(libs.javax.inject)
     api(libs.kotlinx.datetime)
 
-    // room
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
 
     implementation(libs.truth)
     testImplementation(libs.turbine)
     implementation(libs.google.oss.licenses)
     implementation(libs.kotlin.stdlib)
 
-    implementation(libs.compose.material)
 }
