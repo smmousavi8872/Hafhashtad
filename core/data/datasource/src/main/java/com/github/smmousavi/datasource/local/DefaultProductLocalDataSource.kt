@@ -2,7 +2,6 @@ package com.github.smmousavi.datasource.local
 
 import com.github.smmousavi.database.dao.ProductDao
 import com.github.smmousavi.database.entity.ProductEntity
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DefaultProductLocalDataSource @Inject constructor(private val productDao: ProductDao) :
@@ -11,11 +10,11 @@ class DefaultProductLocalDataSource @Inject constructor(private val productDao: 
         productDao.upsertProducts(products)
     }
 
-    override suspend fun getAllProducts(): Flow<List<ProductEntity>> {
+    override suspend fun getAllProducts(): List<ProductEntity> {
         return productDao.getAllProducts()
     }
 
-    override suspend fun getProductById(id: Int): Flow<ProductEntity> {
+    override suspend fun getProductById(id: Int): ProductEntity {
         return productDao.getProductById(id)
     }
 
@@ -23,4 +22,7 @@ class DefaultProductLocalDataSource @Inject constructor(private val productDao: 
         productDao.deleteProducts(ids)
     }
 
+    override suspend fun productsCount(): Int {
+        return productDao.productsCount()
+    }
 }

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.github.smmousavi.data"
+    namespace = "com.github.smmousavi.datasource"
     compileSdk = 34
 
     defaultConfig {
