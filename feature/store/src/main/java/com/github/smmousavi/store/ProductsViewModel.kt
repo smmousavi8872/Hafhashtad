@@ -3,7 +3,7 @@ package com.github.smmousavi.store
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.smmousavi.common.result.Result
-import com.github.smmousavi.domain.GetProductsUseCase
+import com.github.smmousavi.domain.products.GetProductsUseCase
 import com.github.smmousavi.model.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,9 +25,9 @@ class ProductsViewModel @Inject constructor(
         getAllProducts()
     }
 
-     fun getAllProducts() {
+    fun getAllProducts() {
         viewModelScope.launch {
-            getProductsFromDatabaseUseCase.invoke().collect { result ->
+            getProductsFromDatabaseUseCase().collect { result ->
                 _products.value = result
             }
         }

@@ -2,6 +2,7 @@ package com.github.smmousavi.domain
 
 import app.cash.turbine.test
 import com.github.smmousavi.common.result.Result
+import com.github.smmousavi.domain.products.DefaultGetProductsUseCase
 import com.github.smmousavi.network.response.ProductResponse
 import com.github.smmousavi.network.response.RatingResponse
 import com.github.smmousavi.repository.product.DefaultOfflineFirstProductRepository
@@ -17,12 +18,12 @@ class GetAppProductsUseCaseTest {
     @Spy
     private lateinit var mockProductsRepository: DefaultOfflineFirstProductRepository
 
-    private lateinit var getProductsUseCase: GetProductsUseCase
+    private lateinit var getProductsUseCase: DefaultGetProductsUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        getProductsUseCase = GetProductsUseCase(mockProductsRepository)
+        getProductsUseCase = DefaultGetProductsUseCase(mockProductsRepository)
     }
 
     @Test
