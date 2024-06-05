@@ -71,4 +71,16 @@ class ProductViewModelTest {
         }
     }
 
+    @Test
+    fun fetchProductsFromApi_Error() = runBlocking {
+        val exception = RuntimeException("API error")
+        `when`(productRemoteDataSource.requestAllProducts()).thenThrow(exception)
+
+        productRepository.fetchAllProducts().test {
+            assert(awaitItem() is Result.Loading)
+            val errorResult = awaitItem()
+            assert(errorResult is Result.Error && errorResult.exception == exception)
+            awaitComplete()
+        }
+    }
 }

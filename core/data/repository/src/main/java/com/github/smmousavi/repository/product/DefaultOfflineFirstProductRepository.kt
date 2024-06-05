@@ -28,11 +28,7 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
             val networkProducts = productRemoteDataSource.requestAllProducts()
             emit(Result.Success(networkProducts))
         } catch (e: Exception) {
-            if (productLocalDataSource.productsCount() > 0) {
-                emit((Result.Success(emptyList())))
-            } else {
-                emit(Result.Error(e))
-            }
+            emit(Result.Error(e))
         }
     }
 
@@ -43,9 +39,7 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
                 when (result) {
                     Result.Loading -> emit(Result.Loading)
                     is Result.Success -> {
-                        if (result.data.isNotEmpty()) {
-                            productLocalDataSource.upsertProducts(result.data.map { it.asEntity() })
-                        }
+                        productLocalDataSource.upsertProducts(result.data.map { it.asEntity() })
                         emit(
                             Result.Success(
                                 productLocalDataSource.getAllProducts()
@@ -54,7 +48,15 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
                     }
 
                     is Result.Error -> {
-                        emit(Result.Error(result.exception))
+                        if (productLocalDataSource.productsCount() > 0) {
+                            emit(
+                                Result.Success(
+                                    productLocalDataSource.getAllProducts()
+                                        .map { it.asExternalModel() })
+                            )
+                        } else {
+                            emit(Result.Error(result.exception))
+                        }
                     }
                 }
             }
