@@ -1,51 +1,35 @@
-package com.github.smmousavi.store
+package com.github.smmousavi.ui
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.github.smmousavi.common.result.Result
+import androidx.compose.ui.unit.dp
 import com.github.smmousavi.model.Product
 import com.github.smmousavi.model.Rating
-import com.github.smmousavi.ui.LoadingWheel
-import com.github.smmousavi.ui.ProductList
 
 
 @Composable
-fun StoreScreen(viewModel: ProductsViewModel = hiltViewModel()) {
-    val productsResult by viewModel.products.collectAsState()
-
-    Scaffold { paddingValues ->
-        // Apply the padding values to the content
-        Box(modifier = Modifier.padding(paddingValues)) {
-            when (productsResult) {
-                is Result.Loading -> {
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        LoadingWheel(contentDesc = stringResource(R.string.loading_products))
-                    }
-                }
-
-                is Result.Success -> {
-                    val products = (productsResult as Result.Success<List<Product>>).data
-                    ProductList(products = products)
-                }
-
-                is Result.Error -> {
-                    val message = (productsResult as Result.Error).exception.message
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(text = message ?: stringResource(R.string.an_error_occurred))
-
-                    }
-                }
+fun ProductList(products: List<Product>) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        modifier = Modifier.padding(8.dp)
+    ) {
+        items(products.size) { index ->
+            Card(
+                modifier = Modifier
+                    .padding(8.dp),
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp
+                )
+            ) {
+                ProductItem(products[index])
             }
         }
     }
@@ -53,7 +37,7 @@ fun StoreScreen(viewModel: ProductsViewModel = hiltViewModel()) {
 
 @Preview(showBackground = true)
 @Composable
-fun StoreScreenPreview() {
+fun ProductListPreview() {
     val sampleProducts = listOf(
         Product(
             id = 1,

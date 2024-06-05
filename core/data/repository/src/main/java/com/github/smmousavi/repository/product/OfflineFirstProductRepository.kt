@@ -11,5 +11,7 @@ interface OfflineFirstProductRepository {
 
     suspend fun getAllProducts(): Flow<Result<List<Product>>>
 
+    suspend fun searchProducts(query: String): Flow<List<Product>>
+
 }
 

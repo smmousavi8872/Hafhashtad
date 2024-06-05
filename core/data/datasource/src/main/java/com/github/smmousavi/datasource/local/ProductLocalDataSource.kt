@@ -1,6 +1,7 @@
 package com.github.smmousavi.datasource.local
 
 import com.github.smmousavi.database.entity.ProductEntity
+import kotlinx.coroutines.flow.Flow
 
 interface ProductLocalDataSource {
 
@@ -12,6 +13,7 @@ interface ProductLocalDataSource {
 
     suspend fun deleteProducts(ids: List<Int>)
 
-    suspend fun productsCount(): Int
+    suspend fun searchProducts(query: String): Flow<List<ProductEntity>>
 
+    suspend fun productsCount(): Int
 }

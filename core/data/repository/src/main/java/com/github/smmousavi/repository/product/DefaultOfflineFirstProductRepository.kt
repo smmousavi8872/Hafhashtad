@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class DefaultOfflineFirstProductRepository @Inject constructor(
@@ -60,4 +61,9 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
             emit(Result.Error(e))
         }
     }.flowOn(ioDispatcher)
+
+    override suspend fun searchProducts(query: String): Flow<List<Product>> {
+        return productLocalDataSource.searchProducts(query)
+            .map { list -> list.map { it.asExternalModel() } }
+    }
 }
