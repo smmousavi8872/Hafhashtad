@@ -54,7 +54,7 @@ fun ProductItem(product: Product) {
         ) {
             Text(
                 text = "\$${product.price}",
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.titleSmall
             )
             Row(
                 modifier = Modifier,

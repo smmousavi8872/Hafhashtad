@@ -26,7 +26,7 @@ fun ProductList(products: List<Product>) {
                     .padding(8.dp),
                 shape = RoundedCornerShape(8.dp),
                 elevation = CardDefaults.cardElevation(
-                    defaultElevation = 10.dp
+                    defaultElevation = 4.dp
                 )
             ) {
                 ProductItem(products[index])
