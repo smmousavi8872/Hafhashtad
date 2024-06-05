@@ -44,5 +44,20 @@ dependencies {
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+
+    // Testing
+    androidTestImplementation(libs.hilt.android.testing)
+    testImplementation(libs.androidx.work.testing)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.turbine)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.hilt.android.testing)
 }

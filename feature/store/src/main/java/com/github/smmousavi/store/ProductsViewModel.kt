@@ -25,7 +25,7 @@ class ProductsViewModel @Inject constructor(
         getAllProducts()
     }
 
-    private fun getAllProducts() {
+     fun getAllProducts() {
         viewModelScope.launch {
             getProductsFromDatabaseUseCase.invoke().collect { result ->
                 _products.value = result

@@ -50,13 +50,26 @@ dependencies {
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.ext.compiler)
     kaptTest(libs.hilt.compiler)
-    testImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.hilt.android.testing)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    // Testing
+    androidTestImplementation(libs.hilt.android.testing)
+    testImplementation(libs.androidx.work.testing)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.roborazzi)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.turbine)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.hilt.android.testing)
 }
