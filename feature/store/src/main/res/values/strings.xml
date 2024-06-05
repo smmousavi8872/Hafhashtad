@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Hafhashtad</string>
-    <string name="cd_clear_search">Clear Search Text</string>
+    <string name="clear_search">Clear Search Text</string>
+    <string name="search_products">Search Products</string>
 </resources>
