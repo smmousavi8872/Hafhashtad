@@ -1,12 +1,13 @@
 package com.github.smmousavi.hafhashtad
 
+import SearchScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.github.smmousavi.hafhashtad.ui.theme.HafhashtadTheme
 import com.github.smmousavi.store.StoreScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,11 +17,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = MaterialTheme.colorScheme.background
-            ) {
-                StoreScreen()
+            HafhashtadTheme {
+                val navController = rememberNavController()
+                NavHost(navController, startDestination = "store") {
+                    composable("store") { StoreScreen(navController) }
+                    composable("search") { SearchScreen(navController) }
+                }
             }
         }
     }
