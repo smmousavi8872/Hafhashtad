@@ -8,7 +8,7 @@ import com.github.smmousavi.common.result.Result
 import com.github.smmousavi.datasource.local.ProductLocalDataSource
 import com.github.smmousavi.datasource.remote.ProductRemoteDataSource
 import com.github.smmousavi.model.Product
-import com.github.smmousavi.network.response.NetworkProduct
+import com.github.smmousavi.network.response.ProductResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,7 +22,7 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
     @Dispatcher(AppDispatchers.IO) val ioDispatcher: CoroutineDispatcher,
 ) : OfflineFirstProductRepository {
 
-    override suspend fun fetchAllProducts(): Flow<Result<List<NetworkProduct>>> = flow {
+    override suspend fun fetchAllProducts(): Flow<Result<List<ProductResponse>>> = flow {
         emit(Result.Loading)
         try {
             val networkProducts = productRemoteDataSource.requestAllProducts()

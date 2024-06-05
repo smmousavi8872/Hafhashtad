@@ -7,10 +7,8 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.2"
 androidxLifecycle = "2.7.0"
 composeBom = "2024.05.00"
-composeMaterial = "1.6.7"
 accompanist = "0.34.0"
 androidGradlePlugin = "8.4.0"
-androidTools = "31.4.0"
 androidxAppCompat = "1.7.0"
 androidxActivity = "1.8.2"
 androidxBrowser = "1.8.0"
@@ -56,7 +54,9 @@ turbine = "1.1.0"
 material = "1.12.0"
 gson = "2.9.0"
 mockito = "3.11.2"
-mockito-kotlin = "3.2.0"
+mockitoKotlin = "3.2.0"
+mockWebServer = "4.10.0"
+
 
 
 [libraries]
@@ -126,16 +126,17 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
-robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
-roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
-mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito-kotlin" }
-
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
+mock-webserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockWebServer" }
 
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
