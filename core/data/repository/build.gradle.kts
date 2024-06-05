@@ -63,6 +63,13 @@ dependencies {
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gson)
 
+    // Room
+    // room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+
+
     // Testing
     testImplementation(libs.androidx.work.testing)
     testImplementation(libs.robolectric)
@@ -74,6 +81,8 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.mock.webserver)
     testImplementation(libs.hilt.android.testing)
+    testImplementation(libs.room.testing)
+    testImplementation (libs.androidx.junit)
 
     // Android Test
     androidTestImplementation(libs.androidx.junit)

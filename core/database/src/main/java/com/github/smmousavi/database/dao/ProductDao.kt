@@ -25,6 +25,6 @@ interface ProductDao {
     @Query("SELECT * FROM products WHERE title LIKE '%' || :query || '%'")
     fun searchProducts(query: String): Flow<List<ProductEntity>>
 
-    @Query("SELECT COUNT() FROM products")
+    @Query("SELECT COUNT(*) FROM products")
     fun productsCount(): Int
 }

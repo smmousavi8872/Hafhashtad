@@ -48,6 +48,7 @@ retrofitKotlinxSerializationJson = "1.0.0"
 robolectric = "4.12.1"
 roborazzi = "1.7.0"
 room = "2.6.1"
+roomTesting = "2.5.0"
 secrets = "2.0.1"
 truth = "1.4.2"
 turbine = "1.1.0"
@@ -129,6 +130,7 @@ retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "re
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-testing = { group = "androidx.room", name = "room-testing", version.ref = "roomTesting" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }

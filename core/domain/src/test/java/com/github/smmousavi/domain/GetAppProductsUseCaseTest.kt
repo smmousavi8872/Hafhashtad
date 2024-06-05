@@ -4,26 +4,25 @@ import app.cash.turbine.test
 import com.github.smmousavi.common.result.Result
 import com.github.smmousavi.network.response.ProductResponse
 import com.github.smmousavi.network.response.RatingResponse
-import com.github.smmousavi.repository.product.OfflineFirstProductRepository
+import com.github.smmousavi.repository.product.DefaultOfflineFirstProductRepository
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
+import org.mockito.Spy
 
 class GetAppProductsUseCaseTest {
+    @Spy
+    private lateinit var mockProductsRepository: DefaultOfflineFirstProductRepository
 
-    @Mock
-    private lateinit var mockProductsRepository: OfflineFirstProductRepository
-
-    private lateinit var getAppProductsUseCase: GetProductsUseCase
+    private lateinit var getProductsUseCase: GetProductsUseCase
 
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
-        getAppProductsUseCase = GetProductsUseCase(mockProductsRepository)
+        getProductsUseCase = GetProductsUseCase(mockProductsRepository)
     }
 
     @Test
@@ -47,7 +46,7 @@ class GetAppProductsUseCaseTest {
             )
         )
 
-        getAppProductsUseCase.invoke().test {
+        getProductsUseCase.invoke().test {
             val result = awaitItem()
             assert(result is Result.Success && result.data == mockProducts)
             awaitComplete()
@@ -65,7 +64,7 @@ class GetAppProductsUseCaseTest {
             )
         )
 
-        getAppProductsUseCase.invoke().test {
+        getProductsUseCase.invoke().test {
             val result = awaitItem()
             assert(result is Result.Error && result.exception == exception)
             awaitComplete()
