@@ -77,6 +77,7 @@ dependencies {
     implementation(libs.androidx.window.core)
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
+    implementation(libs.compose.material)
 
     // Hilt
     implementation(libs.hilt.android)
@@ -114,7 +115,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     api(libs.androidx.metrics)
     implementation(libs.androidx.browser)
-    implementation(libs.androidx.benchmark.macro)
     implementation(libs.androidx.test.core)
     implementation(libs.androidx.test.espresso.core)
     implementation(libs.androidx.test.ext)
@@ -122,21 +122,12 @@ dependencies {
     implementation(libs.androidx.test.runner)
     implementation(libs.androidx.test.uiautomator)
     implementation(libs.coil.kt.svg)
-    implementation(libs.okhttp.logging)
-    implementation(libs.retrofit.core)
-    implementation(libs.retrofit.gson)
     implementation(libs.javax.inject)
     api(libs.kotlinx.datetime)
 
-    // room
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
 
     implementation(libs.truth)
     testImplementation(libs.turbine)
     implementation(libs.google.oss.licenses)
     implementation(libs.kotlin.stdlib)
-
-    implementation(libs.compose.material)
 }

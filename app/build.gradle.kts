@@ -120,10 +120,10 @@ dependencies {
     kapt(libs.hilt.ext.compiler)
     kaptTest(libs.hilt.compiler)
     testImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.hilt.android.testing)
 
     // Testing
     testImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.hilt.android.testing)
     testImplementation(libs.androidx.work.testing)
     testImplementation(libs.robolectric)
     testImplementation(libs.roborazzi)
@@ -136,6 +136,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     testImplementation(libs.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    testImplementation(libs.turbine)
 
     // Others
     api(libs.androidx.dataStore.core)
@@ -147,7 +149,6 @@ dependencies {
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui.util)
     implementation(libs.coil.kt.compose)
-    androidTestImplementation(libs.androidx.compose.ui.test)
     api(libs.androidx.metrics)
     implementation(libs.androidx.browser)
     implementation(libs.androidx.benchmark.macro)
@@ -170,7 +171,6 @@ dependencies {
     kapt(libs.room.compiler)
 
     implementation(libs.truth)
-    testImplementation(libs.turbine)
     implementation(libs.google.oss.licenses)
     implementation(libs.kotlin.stdlib)
 }

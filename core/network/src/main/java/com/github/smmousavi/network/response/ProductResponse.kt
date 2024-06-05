@@ -3,7 +3,7 @@ package com.github.smmousavi.network.response
 import com.google.gson.annotations.SerializedName
 
 
-data class NetworkProduct(
+data class ProductResponse(
     @SerializedName("id")
     var id: Int? = null,
 
@@ -23,10 +23,10 @@ data class NetworkProduct(
     var image: String? = null,
 
     @SerializedName("rating")
-    var rating: NetworkRating? = null,
+    var rating: RatingResponse? = null,
 )
 
-data class NetworkRating(
+data class RatingResponse(
     @SerializedName("rate")
     var rate: Double? = null,
     @SerializedName("count")

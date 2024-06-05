@@ -1,8 +1,8 @@
 package com.github.smmousavi.datasource.remote
 
-import com.github.smmousavi.network.response.NetworkProduct
+import com.github.smmousavi.network.response.ProductResponse
 
 interface ProductRemoteDataSource {
 
-    suspend fun requestAllProducts(): List<NetworkProduct>
+    suspend fun requestAllProducts(): List<ProductResponse>
 }

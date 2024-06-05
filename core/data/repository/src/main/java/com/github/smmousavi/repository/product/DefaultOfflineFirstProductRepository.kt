@@ -8,7 +8,7 @@ import com.github.smmousavi.common.result.Result
 import com.github.smmousavi.datasource.local.ProductLocalDataSource
 import com.github.smmousavi.datasource.remote.ProductRemoteDataSource
 import com.github.smmousavi.model.Product
-import com.github.smmousavi.network.response.NetworkProduct
+import com.github.smmousavi.network.response.ProductResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,29 +22,24 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
     @Dispatcher(AppDispatchers.IO) val ioDispatcher: CoroutineDispatcher,
 ) : OfflineFirstProductRepository {
 
-    override suspend fun fetchAllProducts(): Flow<Result<List<NetworkProduct>>> = flow {
+    override suspend fun fetchAllProducts(): Flow<Result<List<ProductResponse>>> = flow {
         emit(Result.Loading)
         try {
             val networkProducts = productRemoteDataSource.requestAllProducts()
             emit(Result.Success(networkProducts))
         } catch (e: Exception) {
-            if (productLocalDataSource.productsCount() > 0) {
-                emit((Result.Success(emptyList())))
-            } else {
-                emit(Result.Error(e))
-            }
+            emit(Result.Error(e))
         }
     }
 
+    // Offline first approach to conserve the Single Source of Truth principle
     override suspend fun getAllProducts(): Flow<Result<List<Product>>> = flow {
         try {
             fetchAllProducts().collect { result ->
                 when (result) {
                     Result.Loading -> emit(Result.Loading)
                     is Result.Success -> {
-                        if (result.data.isNotEmpty()) {
-                            productLocalDataSource.upsertProducts(result.data.map { it.asEntity() })
-                        }
+                        productLocalDataSource.upsertProducts(result.data.map { it.asEntity() })
                         emit(
                             Result.Success(
                                 productLocalDataSource.getAllProducts()
@@ -53,7 +48,15 @@ class DefaultOfflineFirstProductRepository @Inject constructor(
                     }
 
                     is Result.Error -> {
-                        emit(Result.Error(result.exception))
+                        if (productLocalDataSource.productsCount() > 0) {
+                            emit(
+                                Result.Success(
+                                    productLocalDataSource.getAllProducts()
+                                        .map { it.asExternalModel() })
+                            )
+                        } else {
+                            emit(Result.Error(result.exception))
+                        }
                     }
                 }
             }

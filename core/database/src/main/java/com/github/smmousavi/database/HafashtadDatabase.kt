@@ -6,7 +6,7 @@ import com.github.smmousavi.database.dao.ProductDao
 import com.github.smmousavi.database.entity.ProductEntity
 
 @Database(entities = [ProductEntity::class], version = 1, exportSchema = true)
-internal abstract class HafashtadDatabase : RoomDatabase() {
+abstract class HafashtadDatabase : RoomDatabase() {
 
     abstract fun productDao(): ProductDao
 

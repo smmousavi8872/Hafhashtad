@@ -39,24 +39,52 @@ android {
 }
 
 dependencies {
+    // Modules
     implementation(project(":core:common"))
     implementation(project(":core:model"))
     implementation(project(":core:network"))
     implementation(project(":core:database"))
     implementation(project(":core:data:datasource"))
 
+    // AppCompat
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.ext.compiler)
     kaptTest(libs.hilt.compiler)
-    testImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.hilt.android.testing)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+    // Retrofit
+    implementation(libs.kotlinx.coroutines.guava)
+    implementation(libs.androidx.tracing.ktx)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gson)
+
+    // Room
+    // room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+
+
+    // Testing
+    testImplementation(libs.androidx.work.testing)
+    testImplementation(libs.robolectric)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.turbine)
+    testImplementation(libs.junit)
+    testImplementation(libs.mock.webserver)
+    testImplementation(libs.hilt.android.testing)
+    testImplementation(libs.room.testing)
+    testImplementation (libs.androidx.junit)
+
+    // Android Test
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.hilt.android.testing)
 }

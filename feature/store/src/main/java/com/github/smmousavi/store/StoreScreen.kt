@@ -3,8 +3,12 @@ package com.github.smmousavi.store
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,10 +31,11 @@ import com.github.smmousavi.ui.LoadingWheel
 import com.github.smmousavi.ui.ProductList
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun StoreScreen(navController: NavHostController, viewModel: ProductsViewModel = hiltViewModel()) {
     val productsResult by viewModel.products.collectAsState()
+    val refreshing by viewModel.isRefreshing.collectAsState()
 
     Scaffold(
         topBar = {
@@ -44,8 +49,16 @@ fun StoreScreen(navController: NavHostController, viewModel: ProductsViewModel =
             )
         }
     ) { paddingValues ->
+        val state = rememberPullRefreshState(
+            refreshing = refreshing,
+            onRefresh = { viewModel.refreshProducts() }
+        )
         // Apply the padding values to the content
-        Box(modifier = Modifier.padding(paddingValues)) {
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
+                .pullRefresh(state)
+        ) {
             when (productsResult) {
                 is Result.Loading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -62,10 +75,15 @@ fun StoreScreen(navController: NavHostController, viewModel: ProductsViewModel =
                     val message = (productsResult as Result.Error).exception.message
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Text(text = message ?: stringResource(R.string.an_error_occurred))
-
                     }
                 }
             }
+
+            PullRefreshIndicator(
+                refreshing = refreshing,
+                state = state,
+                modifier = Modifier.align(Alignment.TopCenter)
+            )
         }
     }
 }
