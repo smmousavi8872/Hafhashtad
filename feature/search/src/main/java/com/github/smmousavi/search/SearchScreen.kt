@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -37,6 +38,12 @@ fun SearchScreen(
     navController: NavHostController,
     viewModel: SearchViewModel = hiltViewModel(),
 ) {
+
+    // Call getAllProducts() when the composable is first displayed
+    LaunchedEffect(Unit) {
+        viewModel.searchProducts()
+    }
+
     val searchQuery by viewModel.searchQuery.collectAsState()
     val searchResults by viewModel.searchResults.collectAsState()
 

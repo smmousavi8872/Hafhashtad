@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 internal object RetrofitModule {
 
     @Provides
-    fun provideStoreRetrofit(
+    fun provideProductRetrofit(
         okhttpCallFactory: dagger.Lazy<Call.Factory>,
     ): Retrofit = Retrofit.Builder()
         .baseUrl(PRODUCTS_BASE_URL)

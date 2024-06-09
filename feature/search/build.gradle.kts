@@ -52,7 +52,6 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
-
     // AndroidX
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -84,23 +83,30 @@ dependencies {
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.ext.compiler)
     kaptTest(libs.hilt.compiler)
-    testImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.hilt.android.testing)
 
     // Testing
-    testImplementation(libs.androidx.compose.ui.test)
     testImplementation(libs.androidx.work.testing)
     testImplementation(libs.robolectric)
-    testImplementation(libs.roborazzi)
-    androidTestImplementation(libs.androidx.test.espresso.core)
-    androidTestImplementation(libs.androidx.navigation.testing)
-    androidTestImplementation(libs.androidx.compose.ui.test)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.turbine)
+    testImplementation(libs.junit)
+    testImplementation(libs.mock.webserver)
+    testImplementation(libs.hilt.android.testing)
+    testImplementation(libs.room.testing)
+    testImplementation(libs.androidx.junit)
+    testImplementation(libs.hilt.android.testing)
+    testImplementation(libs.androidx.arch.core)
+    testImplementation(libs.mockito.inline)
+
+    // Android Test
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.androidx.arch.core)
 
     // Others
     api(libs.androidx.dataStore.core)
@@ -112,7 +118,7 @@ dependencies {
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui.util)
     implementation(libs.coil.kt.compose)
-    androidTestImplementation(libs.androidx.compose.ui.test)
+
     api(libs.androidx.metrics)
     implementation(libs.androidx.browser)
     implementation(libs.androidx.test.core)
@@ -125,9 +131,7 @@ dependencies {
     implementation(libs.javax.inject)
     api(libs.kotlinx.datetime)
 
-
     implementation(libs.truth)
-    testImplementation(libs.turbine)
     implementation(libs.google.oss.licenses)
     implementation(libs.kotlin.stdlib)
 }
