@@ -1,4 +1,4 @@
-package com.github.smmousavi.store
+package com.github.smmousavi.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

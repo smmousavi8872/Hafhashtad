@@ -28,11 +28,7 @@ class SearchViewModel @Inject constructor(
     private val _searchResults = MutableStateFlow<List<Product>>(emptyList())
     val searchResults: StateFlow<List<Product>> get() = _searchResults
 
-    init {
-        searchProducts()
-    }
-
-    private fun searchProducts() {
+     fun searchProducts() {
         viewModelScope.launch {
             _searchQuery
                 .debounce(300)
