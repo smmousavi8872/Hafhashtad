@@ -83,10 +83,8 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:ui"))
     implementation(project(":core:common"))
-
     implementation(project(":feature:store"))
     implementation(project(":feature:search"))
-
     implementation(project(":sync:work"))
 
     // AndroidX

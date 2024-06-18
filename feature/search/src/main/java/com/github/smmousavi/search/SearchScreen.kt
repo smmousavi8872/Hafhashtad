@@ -39,7 +39,7 @@ fun SearchScreen(
     viewModel: SearchViewModel = hiltViewModel(),
 ) {
 
-    // Call getAllProducts() when the composable is first displayed
+    // Call searchProducts() when the composable is first displayed
     LaunchedEffect(Unit) {
         viewModel.searchProducts()
     }

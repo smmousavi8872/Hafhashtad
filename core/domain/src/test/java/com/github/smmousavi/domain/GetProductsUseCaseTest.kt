@@ -7,7 +7,7 @@ import com.github.smmousavi.model.Product
 import com.github.smmousavi.model.Rating
 import com.github.smmousavi.repository.product.DefaultOfflineFirstProductRepository
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -27,7 +27,7 @@ class GetProductsUseCaseTest {
     }
 
     @Test
-    fun invoke_Success() = runBlocking {
+    fun invoke_Success() = runTest {
         val mockProducts = listOf(
             Product(
                 1,
@@ -55,7 +55,7 @@ class GetProductsUseCaseTest {
     }
 
     @Test
-    fun invoke_Error() = runBlocking {
+    fun invoke_Error() = runTest {
         val exception = RuntimeException("API error")
         `when`(mockProductsRepository.getAllProducts()).thenReturn(
             flowOf(
@@ -71,5 +71,4 @@ class GetProductsUseCaseTest {
             awaitComplete()
         }
     }
-
 }

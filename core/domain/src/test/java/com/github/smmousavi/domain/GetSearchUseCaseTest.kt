@@ -6,7 +6,7 @@ import com.github.smmousavi.model.Product
 import com.github.smmousavi.model.Rating
 import com.github.smmousavi.repository.product.DefaultOfflineFirstProductRepository
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -28,7 +28,7 @@ class GetSearchUseCaseTest {
     }
 
     @Test
-    fun invoke_Success() = runBlocking {
+    fun invoke_Success() = runTest {
         val testQuery = "Test"
         val mockProducts = listOf(
             Product(
@@ -54,7 +54,7 @@ class GetSearchUseCaseTest {
     }
 
     @Test
-    fun `when invoking with empty query should return empty list`() = runBlocking {
+    fun `when invoking with empty query should return empty list`() = runTest {
         val testQuery = ""
         val mockProduct = emptyList<Product>()
         `when`(mockProductsRepository.searchProducts(testQuery)).thenReturn(
