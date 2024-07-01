@@ -2,7 +2,7 @@ package com.github.smmousavi.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.github.smmousavi.database.HafashtadDatabase
+import com.github.smmousavi.database.SampleDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,10 +17,10 @@ internal object DatabaseModule {
     @Singleton
     fun providesDatabase(
         @ApplicationContext context: Context,
-    ): HafashtadDatabase = Room.databaseBuilder(
+    ): SampleDatabase = Room.databaseBuilder(
         context,
-        HafashtadDatabase::class.java,
-        "hafashtad-database",
+        SampleDatabase::class.java,
+        "sample-database",
     )
         .fallbackToDestructiveMigration()
         .build()

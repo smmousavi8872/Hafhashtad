@@ -88,6 +88,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.coil.kt)
     implementation(libs.compose.material)
+    implementation(libs.androidx.compose.runtime.tracing)
 
     // Hilt
     implementation(libs.hilt.android)

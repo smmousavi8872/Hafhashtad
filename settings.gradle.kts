@@ -20,7 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Hafhashtad"
+rootProject.name = "SampleProject"
 include(":app")
 include(":core:database")
 include(":core:model")

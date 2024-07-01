@@ -5,7 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.cash.turbine.test
 import com.github.smmousavi.common.result.Result
-import com.github.smmousavi.database.HafashtadDatabase
+import com.github.smmousavi.database.SampleDatabase
 import com.github.smmousavi.database.dao.ProductDao
 import com.github.smmousavi.database.entity.ProductEntity
 import com.github.smmousavi.database.entity.RatingEntity
@@ -17,7 +17,6 @@ import com.github.smmousavi.network.apiservices.ProductsApiService
 import com.github.smmousavi.repository.product.DefaultOfflineFirstProductRepository
 import com.google.gson.Gson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
@@ -43,7 +42,7 @@ class ProductViewModelTest {
     private lateinit var fakeProductRepository: DefaultOfflineFirstProductRepository
     private lateinit var fakeProductApiService: ProductsApiService
     private lateinit var mockWebServer: MockWebServer
-    private lateinit var fakeDatabase: HafashtadDatabase
+    private lateinit var fakeDatabase: SampleDatabase
 
     private val testDispatcher = UnconfinedTestDispatcher()
 
@@ -67,7 +66,7 @@ class ProductViewModelTest {
         // Create an in-memory database
         fakeDatabase = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
-            HafashtadDatabase::class.java
+            SampleDatabase::class.java
         )
             .allowMainThreadQueries()
             .build()
@@ -92,7 +91,7 @@ class ProductViewModelTest {
     }
 
     @Test
-    fun fetchProductsFromApi_Success() = runBlocking {
+    fun fetchProductsFromApi_Success() = runTest {
         val mockResponse = MockResponse()
             .setResponseCode(200)
             .setBody(
@@ -114,12 +113,12 @@ class ProductViewModelTest {
             assert(awaitItem() is Result.Loading)
             val successResult = awaitItem() as Result.Success
             assert(successResult.data[0].title == "Test Product")
-            awaitComplete()
+            cancelAndIgnoreRemainingEvents()
         }
     }
 
     @Test
-    fun fetchProductsFromApi_Error() = runBlocking {
+    fun fetchProductsFromApi_Error() = runTest {
         val response = MockResponse()
             .setResponseCode(500)
             .setBody("""{ "error": "Internal Server Error" }""")
@@ -129,7 +128,7 @@ class ProductViewModelTest {
             assert(awaitItem() is Result.Loading)
             val errorResult = awaitItem()
             assert(errorResult is Result.Error)
-            awaitComplete()
+            cancelAndIgnoreRemainingEvents()
         }
     }
 
@@ -171,7 +170,7 @@ class ProductViewModelTest {
             assertTrue(awaitItem() is Result.Loading)
             val successResult = awaitItem() as Result.Success
             assertEquals("Test Product", successResult.data[0].title)
-            awaitComplete()
+            cancelAndIgnoreRemainingEvents()
         }
     }
 
@@ -199,7 +198,7 @@ class ProductViewModelTest {
             assertTrue(awaitItem() is Result.Loading)
             val successResult = awaitItem() as Result.Success
             assertEquals("Test Product", successResult.data[0].title)
-            awaitComplete()
+            cancelAndIgnoreRemainingEvents()
         }
     }
 
@@ -223,6 +222,7 @@ class ProductViewModelTest {
         fakeProductRepository.searchProducts(mockQuery).test {
             val result = awaitItem()
             assertEquals("Test Product", result[0].title)
+            cancelAndIgnoreRemainingEvents()
         }
     }
 }

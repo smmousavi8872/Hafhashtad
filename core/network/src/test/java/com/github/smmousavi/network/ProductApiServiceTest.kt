@@ -2,7 +2,7 @@ package com.github.smmousavi.network
 
 import com.github.smmousavi.network.apiservices.ProductsApiService
 import com.google.gson.Gson
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.mockwebserver.MockResponse
@@ -44,7 +44,7 @@ class ProductApiServiceTest {
     }
 
     @Test
-    fun `requestAllProducts should return a list of products`() = runBlocking {
+    fun `requestAllProducts should return a list of products`() = runTest {
         val mockResponse = MockResponse()
             .setResponseCode(200)
             .setBody(
