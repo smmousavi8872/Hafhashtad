@@ -1,6 +1,6 @@
 package com.github.smmousavi.database.di
 
-import com.github.smmousavi.database.HafashtadDatabase
+import com.github.smmousavi.database.SampleDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,6 +11,6 @@ import dagger.hilt.components.SingletonComponent
 internal object DaosModule {
 
     @Provides
-    fun providesProductDao(database: HafashtadDatabase) = database.productDao()
+    fun providesProductDao(database: SampleDatabase) = database.productDao()
 
 }

@@ -5,7 +5,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import app.cash.turbine.test
 import com.github.smmousavi.common.result.Result
-import com.github.smmousavi.database.HafashtadDatabase
+import com.github.smmousavi.database.SampleDatabase
 import com.github.smmousavi.database.dao.ProductDao
 import com.github.smmousavi.database.entity.ProductEntity
 import com.github.smmousavi.database.entity.RatingEntity
@@ -42,7 +42,7 @@ class ProductViewModelTest {
     private lateinit var fakeProductRepository: DefaultOfflineFirstProductRepository
     private lateinit var fakeProductApiService: ProductsApiService
     private lateinit var mockWebServer: MockWebServer
-    private lateinit var fakeDatabase: HafashtadDatabase
+    private lateinit var fakeDatabase: SampleDatabase
 
     private val testDispatcher = UnconfinedTestDispatcher()
 
@@ -66,7 +66,7 @@ class ProductViewModelTest {
         // Create an in-memory database
         fakeDatabase = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
-            HafashtadDatabase::class.java
+            SampleDatabase::class.java
         )
             .allowMainThreadQueries()
             .build()
