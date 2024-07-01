@@ -1,7 +1,7 @@
-# Hafhashtad
+# Sample Proejct
 
 ### Overview
-Hafhashtad is an advanced Kotlin-based project designed with modern Android development practices. The project aims to provide a robust foundation leveraging the MVVM (Model-View-ViewModel) architecture and Android Clean Architecture principles. It includes modularized features, ensuring scalable and maintainable code.
+This is an advanced Kotlin-based project designed with modern Android development practices. The project aims to provide a robust foundation leveraging the MVVM (Model-View-ViewModel) architecture and Android Clean Architecture principles. It includes modularized features, ensuring scalable and maintainable code.
 
 ### Features
 - **MVVM Architecture:** Separation of concerns is achieved by dividing the code into Model, View, and ViewModel layers.
@@ -14,11 +14,11 @@ Hafhashtad is an advanced Kotlin-based project designed with modern Android deve
 ### Getting Started
 1. Clone the repository:
     ```bash
-    git clone https://github.com/smmousavi8872/Hafhashtad.git
+    git clone https://github.com/smmousavi8872/SampleProject.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd Hafhashtad
+    cd SampleProject
     ```
 3. Build the project:
     ```bash
